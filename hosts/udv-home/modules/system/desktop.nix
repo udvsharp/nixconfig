@@ -66,8 +66,6 @@
     ]);
 
     # Extensions
-    # TODO: test if this works in different files
-    # Seems like it should, redefinition isn't allowed only in scope of one flake
     environment.systemPackages = (with pkgs; [
         gnome.gdm
     ]) ++ (with pkgs.gnomeExtensions; [
