@@ -9,8 +9,9 @@
         ];
 
         fontconfig = {
+            enable = true;
             defaultFonts = {
-                monospace = [ "JetBrains Mono" "Fira Code" "Consolas" ]; # TODO: doesn't work for terminal
+                monospace = [ "JetBrains Mono" "Fira Code" "Consolas" ];
             };
         };
     };
