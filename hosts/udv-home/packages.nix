@@ -21,7 +21,6 @@
         telegram-desktop
         spotify
         vesktop
-        # google-chrome # TODO: very buggy
-        firefox
+        google-chrome
     ];
 }
