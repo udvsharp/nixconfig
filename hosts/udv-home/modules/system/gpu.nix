@@ -2,12 +2,6 @@
 # Trying out proper NVIDIA configuration with Wayland
 # Xserver will be completely turned off
 {
-    # TODO: unstable branch
-    # hardware.graphics.enable = true;
-
-    # Enable VA-API (Video Acceleration API) support
-    # TODO: no option like this, research
-
     services.xserver.videoDrivers = [ "nvidia" ];
 
     # GPU drivers
@@ -28,24 +22,26 @@
 
         modesetting.enable = true;
 
-        # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-        # Enable this if you have graphical corruption issues or application crashes after waking
-        # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-        # of just the bare essentials.
-        powerManagement.enable = true;
-        # TODO: more config for power management needed, postponing
-        powerManagement.finegrained = false;
+        powerManagement = {
+            enable = true;
+
+            # Uses PRIME
+            finegrained = false;
+        };
+
+        # Won't release the device if not in use
         nvidiaPersistenced  = false;
 
-        # TODO: offload also should be configured properly
-        # prime = {
-            # offload.enable = true;
-        # };
+        # PRIME is useful when there's an integrated GPU
+        prime = {
+            offload.enable = false;
+            sync.enable = false;
+        };
 
         # Enable the Nvidia settings menu,
         # accessible via `nvidia-settings`
-        # TODO: says XDG_RUNTIME_DIR not set
-        nvidiaSettings = true;
+        # TODO: says libEGL is not installed
+        nvidiaSettings = false;
     };
 
     # Additional boot configuration
@@ -71,23 +67,31 @@
         enable = true;
         driSupport = true;       
         driSupport32Bit = true;
+
+        extraPackages = with pkgs; [
+            nvidia-vaapi-driver
+        ];
     };
 
     # Vulkan
-    environment.systemPackages = (with pkgs; [
-        vulkan-tools
-        vulkan-headers
-        vulkan-loader
-        vulkan-validation-layers
+    environment.systemPackages = 
+        # Vulkan Packages
+        (with pkgs; [
+            vulkan-tools
+            vulkan-headers
+            vulkan-loader
+            vulkan-validation-layers
 
-        vulkan-caps-viewer
-    ]) ++ 
-    
-    # Additional packages
-    (with pkgs; [
-        cudatoolkit
-        ffmpeg-full # Will be compiled with NVENC support
-    ]);
+            vulkan-caps-viewer
+        ]) ++ 
+        
+        # Additional packages
+        (with pkgs; [
+            cudatoolkit
+            ffmpeg-full # Will be compiled with NVENC support
+
+            nvtopPackages.nvidia
+        ]);
 
     # TODO: setup displays?
 }
