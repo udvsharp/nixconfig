@@ -2,7 +2,7 @@
 
 {
     # TODO: build from source
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
         # LLVM
         llvmPackages_18.stdenv
         llvmPackages_18.clang

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
         gcc13
         gdb
         libgcc

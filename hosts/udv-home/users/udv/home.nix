@@ -4,10 +4,6 @@
     imports = [
         ./modules/git.nix
 
-        ./modules/cxx.nix
-        ./modules/rust.nix
-        ./modules/python.nix
-
         ./modules/jetbrains.nix
     ];
 

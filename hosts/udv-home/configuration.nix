@@ -17,19 +17,25 @@
         ./hardware-configuration.nix
         home-manager-module
 
-        ### Modules
+        ### System Modules
         # Main
-        ./modules/unused.nix
-        ./modules/bootloader.nix
-        ./modules/network.nix
-        ./modules/firewall.nix
-        ./modules/gpu.nix
-        ./modules/audio.nix
+        ./modules/system/unused.nix
+        ./modules/system/bootloader.nix
+        ./modules/system/network.nix
+        ./modules/system/firewall.nix
+        ./modules/system/gpu.nix
+        ./modules/system/audio.nix
         # ./modules/virtualization.nix # TODO: figure out
-        ./modules/internationalization.nix
-        ./modules/services.nix
+        ./modules/system/internationalization.nix
+        ./modules/system/services.nix
         # Desktop Environment
-        ./modules/desktop.nix
+        ./modules/system/desktop.nix
+
+        ### Tools and applications
+        # Development
+        ./modules/tools/cxx.nix
+        ./modules/tools/rust.nix
+        ./modules/tools/python.nix
 
         # Users
         ./users.nix

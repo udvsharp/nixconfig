@@ -3,10 +3,10 @@
 {
     imports = [
         ./cxx/llvm.nix
-        # ./cxx/gnu.nix # TODO: conflicts with llvm for now
+        ./cxx/gnu.nix
     ];
 
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
         cmake
         valgrind
     ];
