@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ lib, config, pkgs, pkgs-unstable, ... }:
 # Trying out proper NVIDIA configuration with Wayland
 # Xserver will be completely turned off
 {
@@ -12,6 +12,20 @@
 
     # GPU drivers
     hardware.nvidia = {
+        # This uses proprietary driver
+        open = false;
+
+        # Custom NVIDIA driver version
+        # TODO: version 560.31.02 doesn't build
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+            version = "555.58.02";
+            sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+            sha256_aarch64 = lib.fakeSha256;
+            openSha256 = lib.fakeSha256;
+            settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
+            persistencedSha256 = lib.fakeSha256;
+        };
+
         modesetting.enable = true;
 
         # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
@@ -28,20 +42,10 @@
             # offload.enable = true;
         # };
 
-        # This uses proprietary driver
-        open = false;
-
         # Enable the Nvidia settings menu,
         # accessible via `nvidia-settings`
         # TODO: says XDG_RUNTIME_DIR not set
         nvidiaSettings = true;
-
-        # This is driver version 560
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
-        # TODO: use specific version, figure out hashes
-        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        #     version = "560.31.02";
-        # };
     };
 
     # Additional boot configuration
@@ -55,10 +59,6 @@
 
     boot.blacklistedKernelModules = [
         "nouveau" # Blacklist the open-source driver
-    ];
-
-    boot.extraModulePackages = with config.boot.kernelPackages; [ 
-        nvidia_x11
     ];
 
     boot.kernelParams = [
@@ -75,10 +75,12 @@
 
     # Vulkan
     environment.systemPackages = (with pkgs; [
-        vulkan-caps-viewer
         vulkan-tools
+        vulkan-headers
         vulkan-loader
         vulkan-validation-layers
+
+        vulkan-caps-viewer
     ]) ++ 
     
     # Additional packages
