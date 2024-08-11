@@ -28,6 +28,8 @@
         # ./modules/virtualization.nix # TODO: figure out
         ./modules/system/internationalization.nix
         ./modules/system/services.nix
+        ./modules/system/console.nix
+        ./modules/system/fonts.nix
         # Desktop Environment
         ./modules/system/desktop.nix
 
