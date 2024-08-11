@@ -1,14 +1,26 @@
 { config, lib, pkgs, ... }:
-# Using GNOME desktop for now
+# Using GNOME desktop with Wayland
 # TODO: different configs per desktop
 {
-    # Enable the X11 windowing system.
+    services.udev.packages = with pkgs.gnome; [ gnome-settings-daemon ];
+
+    # Enable wayland windowing system.
     services.xserver = {
+        # Required for launch
         enable = true;
-        # Enable the GNOME Desktop Environment.
-        displayManager.gdm.enable = true;
+
+        # Enable the GNOME display manager
+        # and use Wayland as the backend
+        displayManager.gdm = {
+            enable = true;
+            wayland = true;
+        };
+
+        # Enable the GNOME desktop environment
         desktopManager.gnome.enable = true;
     };
+
+    services.displayManager.defaultSession = "gnome";
 
     # Exclude Xserver packages
     services.xserver.excludePackages = with pkgs; [
@@ -56,11 +68,13 @@
     # Extensions
     # TODO: test if this works in different files
     # Seems like it should, redefinition isn't allowed only in scope of one flake
-    environment.systemPackages = with pkgs.gnomeExtensions; [
+    environment.systemPackages = (with pkgs; [
+        gnome.gdm
+    ]) ++ (with pkgs.gnomeExtensions; [
         # gse
         # gse-extensions
         # gse-extensions-extra
-    ];
+    ]);
 
     # Configure keymap in X11
     # services.xserver.xkb.layout = "us";

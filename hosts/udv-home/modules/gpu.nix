@@ -1,10 +1,13 @@
 { pkgs, config, ... }:
-
+# Trying out proper NVIDIA configuration with Wayland
+# Xserver will be completely turned off
 {
     # TODO: unstable branch
     # hardware.graphics.enable = true;
 
-    # Load nvidia driver for Xorg and Wayland
+    # Enable VA-API (Video Acceleration API) support
+    # TODO: no option like this, research
+
     services.xserver.videoDrivers = [ "nvidia" ];
 
     # GPU drivers
@@ -15,31 +18,52 @@
         # Enable this if you have graphical corruption issues or application crashes after waking
         # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
         # of just the bare essentials.
-        powerManagement.enable = false;
+        powerManagement.enable = true;
+        # TODO: more config for power management needed, postponing
+        powerManagement.finegrained = false;
+        nvidiaPersistenced  = false;
 
-        # Fine-grained power management. Turns off GPU when not in use.
-        # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-        # My RTX3070 works fine with this.
-        # TODO: more config needed, postponing
-        # powerManagement.finegrained = true;
-        # prime.offload.enable = true;
+        # TODO: offload also should be configured properly
+        # prime = {
+            # offload.enable = true;
+        # };
 
-        # Use the NVidia open source kernel module (not to be confused with the
-        # independent third-party "nouveau" open source driver).
-        # Support is limited to the Turing and later architectures. Full list of 
-        # supported GPUs is at: 
-        # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-        # Only available from driver 515.43.04+
-        # Currently alpha-quality/buggy, so false is currently the recommended setting.
+        # This uses proprietary driver
         open = false;
 
         # Enable the Nvidia settings menu,
-        # accessible via `nvidia-settings`.
+        # accessible via `nvidia-settings`
+        # TODO: says XDG_RUNTIME_DIR not set
         nvidiaSettings = true;
 
-        # Optionally, you may need to select the appropriate driver version for your specific GPU.
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # This is driver version 560
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # TODO: use specific version, figure out hashes
+        # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        #     version = "560.31.02";
+        # };
     };
+
+    # Additional boot configuration
+    boot.kernelModules = [
+        "nvidia"         # Nvidia driver
+        "nvidia_modeset" # MVIDIA driver will handle mode settings
+        "nvidia_uvm"     # Nvidia Unified Memory - mostly for computing with CUDA
+        "nvidia_drm"     # Integration with DRM (Direct Rendering Manager)
+                         # Helpful for Wayland
+    ];
+
+    boot.blacklistedKernelModules = [
+        "nouveau" # Blacklist the open-source driver
+    ];
+
+    boot.extraModulePackages = with config.boot.kernelPackages; [ 
+        nvidia_x11
+    ];
+
+    boot.kernelParams = [
+        "nvidia-drm.modeset=1" # Mode setting should be enabled right away, crucial for Wayland
+    ];
 
     ### Graphics APIs
     # OpenGL
@@ -49,5 +73,19 @@
         driSupport32Bit = true;
     };
 
-    # TODO: setup Vulkan
+    # Vulkan
+    environment.systemPackages = (with pkgs; [
+        vulkan-caps-viewer
+        vulkan-tools
+        vulkan-loader
+        vulkan-validation-layers
+    ]) ++ 
+    
+    # Additional packages
+    (with pkgs; [
+        cudatoolkit
+        ffmpeg-full # Will be compiled with NVENC support
+    ]);
+
+    # TODO: setup displays?
 }
