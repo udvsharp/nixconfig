@@ -35,6 +35,7 @@
 
         ### Tools and applications
         # Development
+        ./modules/tools/nix.nix
         ./modules/tools/cxx.nix
         ./modules/tools/rust.nix
         ./modules/tools/python.nix
