@@ -13,6 +13,8 @@
         # Editors
         vim
         vscode
+        # Tools
+        wireshark
         # IDEs
         # TODO: install JetBrains products
         # TODO: install compilers, languages
