@@ -25,4 +25,9 @@
         vesktop
         google-chrome
     ];
+
+    # For electron-based apps and chromium
+    environment.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+    };
 }
