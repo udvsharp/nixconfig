@@ -7,14 +7,19 @@
         userEmail = "dmitry.vasyliev@protonmail.com";
 
         aliases = {
-            # LogGraph - Pretty graph log
-            lg = "log --graph --abbrev-commit --decorate --all";
-            # STatusShort - short version of status
-            sts = "status --short --branch --renames --ahead-behind";
+            # Pretty graph log
+            log-graph = "log --graph --abbrev-commit --decorate --all";
+            # Short version of status
+            status-short = "status --short --branch --renames --ahead-behind";
             # Last commit info - detailed (with diff)
             last = "log -1 HEAD --stat";
             # Verbose remote list - with links
-            rv = "remote --verbose";
+            remote-verbose = "remote --verbose";
+
+            ### Additional Shorthands
+            lg = "log-graph";
+            sts = "status-short";
+            rv = "remote-verbose";
         };
 
         # TODO: migrate to vim for that :)
