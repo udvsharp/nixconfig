@@ -4,7 +4,9 @@
     # TODO: define packages in their file by groups
     environment.systemPackages = with pkgs; [
         ### Command line tools
+        neofetch
         htop
+        efibootmgr
 
         ### Development
         # CLI
