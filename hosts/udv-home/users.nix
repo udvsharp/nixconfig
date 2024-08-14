@@ -12,7 +12,7 @@
     users.users.udv = {
         isNormalUser = true;
         description = "Dmitry Vasyliev";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" ];
         packages = with pkgs; [];
     };
 

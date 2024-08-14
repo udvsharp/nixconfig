@@ -25,7 +25,7 @@
         ./modules/system/firewall.nix
         ./modules/system/gpu.nix
         ./modules/system/audio.nix
-        # ./modules/virtualization.nix # TODO: figure out
+        ./modules/system/virtualization.nix
         ./modules/system/internationalization.nix
         ./modules/system/services.nix
         ./modules/system/console.nix

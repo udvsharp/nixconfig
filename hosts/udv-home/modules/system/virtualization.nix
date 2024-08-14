@@ -4,9 +4,7 @@
     virtualisation = { 
         docker = {
             enable = true;
-            package = pkgs.docker_25;
-
-            storageDriver = "btrfs";
+            enableNvidia = true;
         };
     };
 

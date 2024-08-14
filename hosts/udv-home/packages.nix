@@ -32,4 +32,9 @@
     environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
     };
+
+    programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+    };
 }

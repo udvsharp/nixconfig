@@ -1,0 +1,46 @@
+#!/bin/sh
+# Rebuilds nixos with modified config, does version management, saves logs
+
+REBUILD_MODE="${1:-switch}"
+CONFIG_DIR="${CONFIG_DIR:-$HOME/nixconfig}"
+
+pushd "$CONFIG_DIR"
+
+# TODO: autoformat, lint
+
+# Output changes for double-check
+git diff -U0
+
+### Rebuild with new config
+
+# Do a WIP commit so git tree is clean for a rebuild
+git add --all
+git commit --allow-empty --message "WIP"
+
+# Do the rebuild
+echo "Rebuilding NixOS configuration..."
+sudo nixos-rebuild "$REBUILD_MODE" --flake . --show-trace &>nixos-switch.log ||
+    (cat nixos-switch.log | grep --color error && false)
+
+# If the rebuild failed, roll back the WIP commit
+if [ $? -ne 0 ]; then
+    echo "Rebuild failed. Rolling back WIP commit..."
+    git reset --soft HEAD~1
+    exit 1
+fi
+
+### Correct the commit
+# Generation
+gen=$(
+    nixos-rebuild list-generations |
+    grep current |
+    awk -f util/parse-generations.awk;
+)
+
+# TODO: additional message
+git commit --amend --message "Generation $gen"
+
+# Status
+git status-short
+
+popd # ~/nixconfig/
