@@ -3,6 +3,15 @@
 
 REBUILD_MODE="${1:-switch}"
 CONFIG_DIR="${CONFIG_DIR:-$HOME/nixconfig}"
+EDIT_FLAG=false
+
+# Parse arguments for the --edit flag
+for arg in "$@"; do
+    if [ "$arg" = "--edit" ]; then
+        EDIT_FLAG=true
+        break
+    fi
+done
 
 pushd "$CONFIG_DIR"
 
@@ -22,7 +31,6 @@ echo "Rebuilding NixOS configuration..."
 sudo nixos-rebuild "$REBUILD_MODE" --flake . --show-trace &>nixos-switch.log ||
     (cat nixos-switch.log | grep --color error && false)
 
-# If the rebuild failed, roll back the WIP commit
 if [ $? -ne 0 ]; then
     echo "Rebuild failed. Rolling back WIP commit..."
     git reset --soft HEAD~1
@@ -34,11 +42,15 @@ fi
 gen=$(
     nixos-rebuild list-generations |
     grep current |
-    awk -f util/parse-generations.awk;
+    awk -f util/parse-generations.awk
 )
 
-# TODO: additional message
-git commit --amend --message "Generation $gen"
+message="Generation $gen"
+
+git commit --amend --message "$message"
+if [ "$EDIT_FLAG" = true ]; then
+    git commit --amend --edit
+fi
 
 # Status
 git status-short
