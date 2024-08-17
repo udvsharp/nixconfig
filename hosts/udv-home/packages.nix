@@ -1,12 +1,17 @@
-{ pkgs, ... }:
+{ packages, ... }:
 
 {
     # TODO: define packages in their file by groups
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with packages.stable; [
         ### Command line tools
         neofetch
         htop
         efibootmgr
+        wget
+        curl
+        unzip
+        cmatrix
+        comma
 
         ### Development
         # CLI
@@ -18,8 +23,6 @@
         # Tools
         wireshark
         # IDEs
-        # TODO: install JetBrains products
-        # TODO: install compilers, languages
 
         # Applications
         telegram-desktop
@@ -27,11 +30,6 @@
         vesktop
         google-chrome
     ];
-
-    # For electron-based apps and chromium
-    environment.sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-    };
 
     programs.direnv = {
         enable = true;

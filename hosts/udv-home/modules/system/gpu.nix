@@ -1,4 +1,4 @@
-{ lib, config, pkgs, pkgs-unstable, ... }:
+{ lib, config, packages, ... }:
 # Trying out proper NVIDIA configuration with Wayland
 # Xserver will be completely turned off
 {
@@ -69,7 +69,7 @@
         driSupport = true;       
         driSupport32Bit = true;
 
-        extraPackages = with pkgs; [
+        extraPackages = with packages.stable; [
             nvidia-vaapi-driver
         ];
     };
@@ -77,7 +77,7 @@
     # Vulkan
     environment.systemPackages = 
         # Vulkan Packages
-        (with pkgs; [
+        (with packages.stable; [
             vulkan-tools
             vulkan-headers
             vulkan-loader
@@ -87,7 +87,7 @@
         ]) ++ 
         
         # Additional packages
-        (with pkgs; [
+        (with packages.stable; [
             cudatoolkit
             ffmpeg-full # Will be compiled with NVENC support
 

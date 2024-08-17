@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ packages, lib, ... }:
 
 {
     i18n = (let

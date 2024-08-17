@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, packages, ... }:
 
 {
     imports = [
         # ./jetbrains/override.nix # TODO: doesn't work for now
     ];
 
-    home.packages = with pkgs.jetbrains; [
+    home.packages = with packages.stable.jetbrains; [
         clion
         rust-rover
     ];

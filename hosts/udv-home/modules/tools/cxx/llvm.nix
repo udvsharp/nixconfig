@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, packages, ... }:
 
 {
     # TODO: build from source
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with packages.stable; [
         # LLVM
         llvmPackages_18.stdenv
         llvmPackages_18.clang

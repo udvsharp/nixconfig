@@ -1,8 +1,7 @@
 {
     config,
     lib,
-    pkgs,
-    home-manager-module,
+    packages,
     ...
 }:
 
@@ -13,15 +12,16 @@
         isNormalUser = true;
         description = "Dmitry Vasyliev";
         extraGroups = [ "networkmanager" "wheel" "docker" ];
-        packages = with pkgs; [];
+        packages = with packages.stable; [];
     };
 
     home-manager = {
         extraSpecialArgs = {
-            inherit home-manager-module;
+            inherit packages;
         };
         
-        useGlobalPkgs = true;
+        # Passing through packages
+        useGlobalPkgs = false;
         useUserPackages = true;
 
         users = {

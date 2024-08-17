@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ packages, ...}:
 
 let
     vmoptions-contents = builtins.readFile ./jetbrains/template.vmoptions;

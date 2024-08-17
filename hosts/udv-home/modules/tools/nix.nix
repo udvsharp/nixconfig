@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, packages, ... }:
 
 {
-    environment.etc."opt/hello".text = ''
-        #!/bin/sh
-        echo "Hello, world!"
-    '';
+    environment.systemPackages = with packages.stable; [
+        nil
+        nixfmt
+    ];
 }

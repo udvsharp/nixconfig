@@ -5,17 +5,17 @@
 {
     config,
     lib, 
-    pkgs,
-    nix-version,
-    home-manager-module,
+    packages,
     ...
 }:
 
 {
+    # TODO: even though set in lib/packages.nix, it's not inherited
+    nixpkgs.config.allowUnfree = true;
+
     imports = [
         # System
         ./hardware-configuration.nix
-        home-manager-module
 
         ### System Modules
         # Main
@@ -30,6 +30,7 @@
         ./modules/system/services.nix
         ./modules/system/console.nix
         ./modules/system/fonts.nix
+        ./modules/system/nix-ld.nix
         # Desktop Environment
         ./modules/system/desktop.nix
 
@@ -48,8 +49,6 @@
     ];
 
     # Nix configuration
-    nixpkgs.config.allowUnfree = true;
-
     nix.settings.experimental-features = [ "nix-command flakes" ];
 
     # System Information

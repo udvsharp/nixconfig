@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, packages, ... }:
 
 {
     fonts = {
-        packages = with pkgs; [
+        packages = with packages.stable; [
             # Monospace
             jetbrains-mono
             fira-code

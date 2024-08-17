@@ -1,10 +1,9 @@
-{ pkgs, ... }:
+{ packages, ... }:
 
 {
     virtualisation = { 
         docker = {
             enable = true;
-            enableNvidia = true;
         };
     };
 
