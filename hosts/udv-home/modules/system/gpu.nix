@@ -7,7 +7,7 @@
     # GPU drivers
     hardware.nvidia = {
         # This uses proprietary driver
-        open = false;
+        open = true;
 
         # Custom NVIDIA driver version
         # TODO: version 560.35.03 doesn't build
