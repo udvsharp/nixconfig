@@ -7,7 +7,7 @@
     # GPU drivers
     hardware.nvidia = {
         # This uses proprietary driver
-        open = true;
+        open = false;
 
         # Custom NVIDIA driver version
         # TODO: version 560.35.03 doesn't build
@@ -33,8 +33,6 @@
 
         # Enable the Nvidia settings menu,
         # accessible via `nvidia-settings`
-        # TODO: says libEGL is not installed
-        # TODO: also won't build in 560.31.02 because can't find vulkan
         nvidiaSettings = true;
     };
 
