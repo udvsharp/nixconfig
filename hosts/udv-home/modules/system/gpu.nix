@@ -70,6 +70,7 @@
         driSupport32Bit = true;
 
         extraPackages = with packages.stable; [
+            mesa.drivers
             nvidia-vaapi-driver
         ];
     };
