@@ -2,33 +2,33 @@
 
 {
     # TODO: define packages in their file by groups
-    environment.systemPackages = with packages.stable; [
+    environment.systemPackages = with packages; [
         ### Command line tools
-        neofetch
-        htop
-        efibootmgr
-        wget
-        curl
-        unzip
-        cmatrix
-        comma
+        unstable.neofetch
+        unstable.htop
+        unstable.efibootmgr
+        unstable.wget
+        unstable.curl
+        unstable.unzip
+        unstable.cmatrix
+        unstable.comma
 
         ### Development
         # CLI
-        git
-        gh
+        unstable.git
+        unstable.gh
         # Editors
-        vim
-        vscode
+        unstable.vim
+        unstable.vscode
         # Tools
-        wireshark
+        unstable.wireshark
         # IDEs
 
         # Applications
-        telegram-desktop
-        spotify
-        vesktop
-        google-chrome
+        unstable.telegram-desktop
+        unstable.spotify
+        unstable.vesktop
+        unstable.google-chrome
     ];
 
     programs.direnv = {
