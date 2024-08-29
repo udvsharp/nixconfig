@@ -70,6 +70,8 @@
     environment.systemPackages = 
         # Vulkan Packages
         (with packages.stable; [
+            glxinfo
+
             vulkan-tools
             vulkan-headers
             vulkan-loader
