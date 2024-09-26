@@ -29,6 +29,7 @@
         unstable.spotify
         unstable.vesktop
         unstable.google-chrome
+        unstable.logiops
     ];
 
     programs.direnv = {
