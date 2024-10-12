@@ -1,10 +1,13 @@
-{ config, packages, ... }:
+{ config, packages, dotsrc, ... }:
 
 {
     imports = [
         ./modules/git.nix
 
         ./modules/jetbrains.nix
+        ./modules/kitty.nix
+        ./modules/nvim.nix
+        ./modules/starship.nix
     ];
 
     home.username = "udv";

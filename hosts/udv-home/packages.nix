@@ -14,11 +14,14 @@
         unstable.comma
 
         ### Development
+        unstable.kitty
+        unstable.nerdfonts
         # CLI
         unstable.git
         unstable.gh
         # Editors
         unstable.vim
+        unstable.neovim
         unstable.vscode
         # Tools
         unstable.wireshark

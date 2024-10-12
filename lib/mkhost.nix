@@ -7,6 +7,7 @@ name:
 }:
 
 let
+    dotsrc = ../packages;
     lib =  package-sets.stable.lib;
 
     packages = import ./packages.nix {
@@ -27,5 +28,6 @@ in mkSystem {
     specialArgs = {
         inherit inputs;
         inherit packages;
+        inherit dotsrc;
     };
 }

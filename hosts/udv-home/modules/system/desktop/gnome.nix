@@ -48,11 +48,11 @@
         gnome-music
         gnome-screenshot
         gnome-weather
+        gnome-terminal
 
         # Leaving enabled intentionally
         # gnome-system-monitor
         # gnome-disk-utility
-        # gnome-terminal
     ]) ++ (with packages.stable.gnome; [
         baobab      # Disk usage analyzer
         cheese      # Photo booth

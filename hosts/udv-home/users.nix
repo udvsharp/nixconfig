@@ -2,6 +2,7 @@
     config,
     lib,
     packages,
+    dotsrc,
     ...
 }:
 
@@ -18,11 +19,14 @@
     home-manager = {
         extraSpecialArgs = {
             inherit packages;
+            inherit dotsrc;
         };
         
         # Passing through packages
         useGlobalPkgs = false;
         useUserPackages = true;
+
+        backupFileExtension = ".bk";
 
         users = {
             udv = import ./users/udv/home.nix;
