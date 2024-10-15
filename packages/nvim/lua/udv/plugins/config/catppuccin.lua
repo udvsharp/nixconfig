@@ -30,7 +30,16 @@ require("catppuccin").setup({
         operators = {}
         -- miscs = {}, -- Uncomment to turn off hard-coded styles
     },
-    color_overrides = {},
+    color_overrides = {
+		all = {
+
+		},
+		latte = {
+
+		},
+		mocha = {
+		},
+	},
     custom_highlights = {},
     default_integrations = true,
     integrations = {
@@ -46,4 +55,3 @@ require("catppuccin").setup({
     }
 })
 
-vim.cmd.colorscheme "catppuccin-macchiato"
