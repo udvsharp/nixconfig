@@ -1,3 +1,15 @@
 {
-  "lazy.nvim": { "branch": "main", "commit": "1159bdccd8910a0fd0914b24d6c3d186689023d9" }
+  "catppuccin": { "branch": "main", "commit": "7be452ee067978cdc8b2c5f3411f0c71ffa612b9" },
+  "gruvbox.nvim": { "branch": "main", "commit": "49d9c0b150ba70efcd831ec7b3cb8ee740067045" },
+  "lazy.nvim": { "branch": "main", "commit": "1159bdccd8910a0fd0914b24d6c3d186689023d9" },
+  "lualine.nvim": { "branch": "master", "commit": "b431d228b7bbcdaea818bdc3e25b8cdbe861f056" },
+  "neodev.nvim": { "branch": "main", "commit": "46aa467dca16cf3dfe27098042402066d2ae242d" },
+  "nvim-lspconfig": { "branch": "master", "commit": "541f3a2781de481bb84883889e4d9f0904250a56" },
+  "nvim-treesitter": { "branch": "master", "commit": "03452942dfbd998701d4123ccad2090e1bc7e9f1" },
+  "nvim-treesitter-textobjects": { "branch": "master", "commit": "0d79d169fcd45a8da464727ac893044728f121d4" },
+  "nvim-web-devicons": { "branch": "master", "commit": "19d257cf889f79f4022163c3fbb5e08639077bd8" },
+  "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
+  "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
+  "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "vim-devicons": { "branch": "master", "commit": "71f239af28b7214eebb60d4ea5bd040291fb7e33" }
 }

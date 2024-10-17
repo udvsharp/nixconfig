@@ -32,13 +32,11 @@ local plugins = {
         tag = "0.1.8",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
         },
         config = function()
             require("udv.plugins.config.telescope")
         end
-    },
-    {
-        "nvim-telescope/telescope-ui-select.nvim",
     },
     {
         "neovim/nvim-lspconfig",
@@ -60,6 +58,9 @@ if not is_nixos() then
     table.insert(plugins, {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
         config = function()
             require("udv.plugins.config.treesitter")
         end

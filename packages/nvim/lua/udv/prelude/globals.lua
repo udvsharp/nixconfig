@@ -6,7 +6,7 @@ vim.o.clipboard = 'unnamedplus'
 
 -- Line numbers
 vim.o.number = true
-vim.o.nuw = 2
+vim.o.nuw = 4
 
 -- Tabs, spaces
 local tab_width = 4

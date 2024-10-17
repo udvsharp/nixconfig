@@ -2,12 +2,13 @@
 
 {
     # TODO: build from source
-    environment.systemPackages = with packages.stable; [
+    environment.systemPackages = with packages.unstable; [
         # LLVM
-        llvmPackages_18.stdenv
-        llvmPackages_18.clang
-        llvmPackages_18.llvm
-        llvmPackages_18.lld
-        llvmPackages_18.lldb
+        llvmPackages_19.stdenv
+        llvmPackages_19.clang
+        llvmPackages_19.clangd
+        llvmPackages_19.llvm
+        llvmPackages_19.lld
+        llvmPackages_19.lldb
     ];
 }

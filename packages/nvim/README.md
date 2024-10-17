@@ -28,4 +28,9 @@ The idea behind keymaps is subgrouping and mneumonics.
 
 Here's a complete keymap
 ```
-```
+s - selection
+ss - Selection Start
+si - Selection Increment
+sc - Selection SCope
+sd - Decrement
+``
