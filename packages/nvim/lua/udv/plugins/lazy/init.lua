@@ -50,6 +50,19 @@ local plugins = {
             require("udv.plugins.config.neodev")
         end
     },
+    {
+        "amitds1997/remote-nvim.nvim",
+        version = "*",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        config = true,
+        -- config = function()
+            -- require("udv.plugins.config.remote-nvim")
+        -- end
+    },
 }
 
 -- Add treesitters only on non-nixos systems
