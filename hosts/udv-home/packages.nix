@@ -19,6 +19,7 @@
         # CLI
         unstable.git
         unstable.gh
+        unstable.ripgrep
         # Editors
         unstable.vim
         unstable.neovim
