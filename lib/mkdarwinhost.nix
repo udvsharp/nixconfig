@@ -1,4 +1,4 @@
-{ package-sets, inputs }:
+{ package-sets, inputs, nix-darwin }:
 
 name:
 {
@@ -17,10 +17,12 @@ let
 
     home-manager = inputs.home-manager.nixosModules;
 
-    mkSystem = lib.nixosSystem;
+    mkSystem = nix-darwin.lib.darwinSystem;
 in mkSystem {
     inherit system;
 
+    # TODO: darwinPackages exposer somehow?
+    
     modules = [
         home-manager.default # TODO: can setup here?
         configuration

@@ -1,4 +1,4 @@
-{
+{   # TODO: add this to common modules
     # TODO: ssh, gpg, github gitlab
     programs.git.enable = true;
     

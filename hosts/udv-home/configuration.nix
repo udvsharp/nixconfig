@@ -36,11 +36,11 @@
         ./modules/system/desktop.nix
 
         ### Tools and applications
-        # Development
-        ./modules/tools/nix.nix
-        ./modules/tools/cxx.nix
-        ./modules/tools/rust.nix
-        ./modules/tools/python.nix
+        # Development # TODO: import from common
+        # ./modules/tools/nix.nix
+        # ./modules/tools/cxx.nix
+        # ./modules/tools/rust.nix
+        # ./modules/tools/python.nix
 
         # Users
         ./users.nix
@@ -53,6 +53,7 @@
     nix.settings.experimental-features = [ "nix-command flakes" ];
 
     # System Information
+    # TODO: hostname as argument?
     networking.hostName = "udv-home";
 
     # TODO: separate datetime file?
