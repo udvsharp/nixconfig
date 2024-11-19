@@ -9,7 +9,7 @@
     imports = [
         ./modules/system.nix
 
-        ./package.nix
+        ./packages.nix
     ];
 
     security.pam.enableSudoTouchIdAuth = true;
@@ -18,17 +18,14 @@
     services.nix-daemon.enable = true;
     # nix.package = pkgs.nix;
 
-    # Necessary for using flakes on this system.
-    nix.settings.experimental-features = "nix-command flakes";
-
     nix.linux-builder.enable = true;
 
     # Create /etc/zshrc that loads the nix-darwin environment.
     programs.zsh.enable = true;  # default shell on catalina
     # programs.fish.enable = true;
 
-    # Set Git commit hash for darwin-version.
-    system.configurationRevision = self.rev or self.dirtyRev or null;
+    # Set Git commit hash for darwin-version. # TODO: pass this down
+    # system.configurationRevision = self.rev or self.dirtyRev or null;
 
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog

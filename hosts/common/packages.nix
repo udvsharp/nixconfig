@@ -3,9 +3,9 @@
 {
     environment.systemPackages = with packages; [
         ### Command line tools
+        unstable.starship
         unstable.neofetch
         unstable.htop
-        unstable.efibootmgr
         unstable.wget
         unstable.curl
         unstable.unzip
@@ -27,11 +27,9 @@
         # IDEs
 
         # Applications
-        unstable.telegram-desktop
         unstable.spotify
         unstable.vesktop
         unstable.google-chrome
-        unstable.logiops
     ];
 
     programs.direnv = {

@@ -19,12 +19,12 @@ let
 
     mkSystem = nix-darwin.lib.darwinSystem;
 in mkSystem {
-    inherit system;
+    # inherit system;
 
     # TODO: darwinPackages exposer somehow?
     
     modules = [
-        home-manager.default # TODO: can setup here?
+        # home-manager.default # TODO: can setup here?
         configuration
 
         # Common modules

@@ -1,4 +1,4 @@
-{ package-sets, inputs }:
+{ package-sets, inputs, nix-darwin }:
 
 {
     mkHost = import ./mkhost.nix {
@@ -6,6 +6,6 @@
     };
 
     mkDarwinHost = import ./mkdarwinhost.nix {
-        inherit package-sets inputs;
+        inherit package-sets inputs nix-darwin;
     };
 }

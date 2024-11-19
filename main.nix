@@ -13,6 +13,7 @@
             unstable = nixpkgs-unstable;
         };
 
+        inherit nix-darwin;
         inherit inputs;
     };
 in {
