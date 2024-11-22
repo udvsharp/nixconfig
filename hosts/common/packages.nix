@@ -9,6 +9,7 @@
         unstable.wget
         unstable.curl
         unstable.unzip
+        unstable.ripgrep
         unstable.cmatrix
         unstable.comma
 
@@ -25,6 +26,7 @@
         # Tools
         unstable.wireshark
         # IDEs
+        unstable.jetbrains.clion
 
         # Applications
         unstable.spotify
