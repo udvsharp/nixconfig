@@ -4,7 +4,7 @@
 # TODO: wayland should be a separate module
 # TODO: options
 {
-    services.udev.packages = with packages.stable.gnome; [ gnome-settings-daemon ];
+    services.udev.packages = with packages.stable; [ gnome-settings-daemon ];
 
     # Enable wayland windowing system.
     services.xserver = {
@@ -36,7 +36,7 @@
         gnome-connections
         
         gedit       # Text editor
-    ]) ++ (with packages.stable.gnome; [
+    ]) ++ (with packages.stable; [
         gnome-calculator
         gnome-calendar
         gnome-characters 
@@ -53,7 +53,7 @@
         # Leaving enabled intentionally
         # gnome-system-monitor
         # gnome-disk-utility
-    ]) ++ (with packages.stable.gnome; [
+    ]) ++ (with packages.stable; [
         baobab      # Disk usage analyzer
         cheese      # Photo booth
         eog         # Image viewer
@@ -69,7 +69,7 @@
 
     # Extensions
     environment.systemPackages = (with packages.stable; [
-        gnome.gdm
+        gdm
     ]) ++ (with packages.stable.gnomeExtensions; [
         # gse
         # gse-extensions

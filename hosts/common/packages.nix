@@ -12,22 +12,26 @@
         unstable.ripgrep
         unstable.cmatrix
         unstable.comma
+        unstable.tokei
+
+        unstable.fzf
+        unstable.fd
 
         ### Development
         unstable.kitty
-        unstable.nerdfonts
         # CLI
         unstable.git
         unstable.gh
         # Editors
         unstable.vim
         unstable.neovim
+        unstable.tmux
         unstable.vscode
         # Tools
         unstable.wireshark
         # IDEs
         unstable.jetbrains.clion
-
+        
         # Applications
         unstable.spotify
         unstable.vesktop

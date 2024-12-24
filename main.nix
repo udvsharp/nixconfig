@@ -3,7 +3,6 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
-    nix-ld-rs,
     nix-darwin,
     ...
 }@inputs: let

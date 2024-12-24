@@ -7,7 +7,6 @@
 }:
 
 {
-    # TODO: move this to home manager config
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.udv = {
         isNormalUser = true;
@@ -26,7 +25,7 @@
         useGlobalPkgs = false;
         useUserPackages = true;
 
-        backupFileExtension = ".bk";
+        backupFileExtension = "bk";
 
         users = {
             udv = import ./users/udv/home.nix;

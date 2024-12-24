@@ -1,0 +1,1 @@
+vim.cmd "colorscheme aesthetic_dark"

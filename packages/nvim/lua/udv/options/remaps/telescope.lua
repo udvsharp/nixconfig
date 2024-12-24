@@ -1,5 +1,16 @@
 -- Remaps
 local builtin = require("telescope.builtin")
+-- local wk = require("which-key")
+
+local function edit_neovim_config()
+    builtin.find_files {
+        cwd = vim.fn.stdpath("config")
+    }
+end
+
+-- <C-/> for help
+
+vim.keymap.set('n', '<leader>ec', edit_neovim_config,           { desc = "Edit nvim Config files" })
 
 -- TODO: udv.keymap_leader
 vim.keymap.set('n', '<leader>ff', builtin.find_files,           { desc = "Find - Files" })

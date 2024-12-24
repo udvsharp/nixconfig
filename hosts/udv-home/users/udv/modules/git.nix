@@ -52,10 +52,10 @@
             rebup = "rebase-unpushed";
         };
 
-        # TODO: migrate to vim for that :)
         extraConfig = {
             core = {
-                editor = "code --wait";
+                # editor = "code --wait";
+                editor = "nvim";
             };
             merge = {
                 tool = "vscode";

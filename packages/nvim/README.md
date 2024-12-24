@@ -33,4 +33,42 @@ ss - Selection Start
 si - Selection Increment
 sc - Selection SCope
 sd - Decrement
-``
+```
+
+# TODO
+## New plugins
+- [x] whichkey 
+    - [x] Theme and opts
+    - [ ] Add key groups
+- [x] neotree
+    - [ ] Switch root dir
+    - [ ] "Scope to folder" hotkey with ability to revert (pushd-like)
+    - [ ] Detect git repo?
+- [x] nvim-window-picker
+- [x] toggleterm
+    - [ ] Advanced setup, not just a toggle
+- [x] cmp
+- [ ] overseer
+- [ ] shada
+    - Or session manager
+- [ ] telescope lsp pickers
+- [ ] conform
+- [ ] alpha-nvim
+- [ ] nvim-dap
+- [ ] todo-comments
+- [ ] lazygit
+- [ ] git-signs
+    - See if needed with lazygit
+- [ ] tmux + nvim-tmux
+- [ ] Harpoon
+- [ ] Undotree
+- [ ] More LSPs
+    - Python
+
+## Lookup
+- [ ] TJ
+    - Completion engine smth
+- [ ] clangd switch source-header hotkey
+- [ ] lspconfig hotkeys
+- [ ] treesitter hotkeys
+- [ ] vim.lsp.buf

@@ -1,2 +1,2 @@
-require("udv.options.colorscheme")
 require("udv.options.remaps")
+require("udv.options.colors")

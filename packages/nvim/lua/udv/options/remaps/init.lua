@@ -1,2 +1,7 @@
 require("udv.options.remaps.global")
+require("udv.options.remaps.completion")
 require("udv.options.remaps.telescope")
+require("udv.options.remaps.neotree")
+require("udv.options.remaps.window-picker")
+require("udv.options.remaps.toggleterm")
+require("udv.options.remaps.lsp")

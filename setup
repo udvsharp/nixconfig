@@ -1,0 +1,8 @@
+#!/bin/sh
+# For use on non-nixos systems
+
+CONFIG_DIR=$(realpath $(dirname $0))
+
+ln -sf "$CONFIG_DIR/packages/nvim" "$HOME/.config/nvim"
+ln -sf "$CONFIG_DIR/packages/kitty" "$HOME/.config/kitty"
+ln -sf "$CONFIG_DIR/packages/starship.toml" "$HOME/.config/starship/simple.toml"

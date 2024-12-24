@@ -15,12 +15,48 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
-        {
-            import = "udv.plugins.lazy"
-        }
+        { import = "udv.plugins.lazy" },
+    },
+    defaults = {
+        lazy = false,
+        version = false,
     },
     checker = {
-        enabled = true
-    }
+        enabled = true,
+        notify = false,
+    },
+    performance = {
+        rtp = {
+            -- disable some rtp plugins
+            disabled_plugins = {
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
+        },
+    },
+    rocks = {
+        enabled = false,
+    },
 })
 
+-- Enable closing window by escape
+local user_grp = vim.api.nvim_create_augroup("LazyUserGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "lazy",
+    desc = "Quit lazy with <esc>",
+    callback = function()
+        vim.keymap.set(
+            "n",
+            "<esc>",
+            function() vim.api.nvim_win_close(0, false) end,
+            { buffer = true, nowait = true }
+        )
+    end,
+    group = user_grp,
+})

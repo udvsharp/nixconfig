@@ -1,0 +1,1 @@
+-- vim.keymap.set('n', '<C-T>', ':ToggleTerm<CR>', { noremap = true, silent = true })

@@ -2,16 +2,17 @@
 
 {
     fonts = {
-        packages = with packages.stable; [
+        packages = with packages.unstable; [
             # Monospace
-            jetbrains-mono
-            fira-code
+            # jetbrains-mono
+            # Nerdfonts
+            nerd-fonts.jetbrains-mono
         ];
 
         fontconfig = {
             enable = true;
             defaultFonts = {
-                monospace = [ "JetBrains Mono" "Fira Code" "Consolas" ];
+                monospace = [ "JetBrains Mono NF" "Consolas" ];
             };
         };
     };

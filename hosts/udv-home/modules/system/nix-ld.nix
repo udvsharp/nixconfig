@@ -3,7 +3,6 @@
 {
     programs.nix-ld = {
         enable = true;
-        package = inputs.nix-ld-rs.packages.${packages.stable.system}.nix-ld-rs;
 
         libraries = with packages.stable; [
             stdenv.cc.cc

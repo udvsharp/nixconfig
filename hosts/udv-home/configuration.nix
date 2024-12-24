@@ -35,13 +35,6 @@
         # Desktop Environment
         ./modules/system/desktop.nix
 
-        ### Tools and applications
-        # Development # TODO: import from common
-        # ./modules/tools/nix.nix
-        # ./modules/tools/cxx.nix
-        # ./modules/tools/rust.nix
-        # ./modules/tools/python.nix
-
         # Users
         ./users.nix
 
@@ -92,6 +85,6 @@
     # and migrated your data accordingly.
     #
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-    system.stateVersion = "24.05"; # TODO: variable?
+    system.stateVersion = "24.11"; # TODO: variable?
 }
 

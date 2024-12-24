@@ -22,12 +22,11 @@ in mkSystem {
     inherit system;
 
     modules = [
-        home-manager.default # TODO: can setup here?
+        home-manager.default
         configuration
 
         # Common modules
-        "${root}/hosts/common/nix.nix"
-        "${root}/hosts/common/packages.nix"
+        "${root}/hosts/common"
     ];
 
     specialArgs = {

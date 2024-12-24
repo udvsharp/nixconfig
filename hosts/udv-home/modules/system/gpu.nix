@@ -1,6 +1,9 @@
 { lib, config, packages, ... }:
 # Trying out proper NVIDIA configuration with Wayland
 # Xserver will be completely turned off
+let 
+    isBefore2411 = lib.versionOlder config.system.nixos.version "24.11";
+in 
 {
     services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -55,7 +58,7 @@
 
     ### Graphics APIs
     # OpenGL
-    hardware.opengl = {
+    hardware.opengl = lib.mkIf isBefore2411 {
         enable = true;
         driSupport = true;       
         driSupport32Bit = true;
