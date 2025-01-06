@@ -5,4 +5,5 @@ CONFIG_DIR=$(realpath $(dirname $0))
 
 ln -sf "$CONFIG_DIR/packages/nvim" "$HOME/.config/nvim"
 ln -sf "$CONFIG_DIR/packages/kitty" "$HOME/.config/kitty"
-ln -sf "$CONFIG_DIR/packages/starship.toml" "$HOME/.config/starship/simple.toml"
+ln -sf "$CONFIG_DIR/packages/starship/simple.toml" "$HOME/.config/starship.toml"
+ln -sf "$CONFIG_DIR/packages/tmux" "$HOME/.config/tmux"
