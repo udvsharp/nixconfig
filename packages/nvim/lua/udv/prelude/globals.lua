@@ -3,9 +3,7 @@ require("udv.prelude.util")
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Integrate with system clipboard
 vim.o.showmode = false
--- vim.o.clipboard = 'unnamedplus'
 vim.o.cursorline = true
 vim.o.signcolumn = "yes"
 

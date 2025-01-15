@@ -14,6 +14,10 @@ local function plugin_config_module(module_type, plugin_info)
 end
 
 local function add_plugin(plugin_info)
+    if plugin_info.disabled then
+        return None
+    end
+
     local plugin_opts_module = plugin_config_module("opts", plugin_info)
     local plugin_init_module = plugin_config_module("init", plugin_info)
     local plugin_config_module = plugin_config_module("config", plugin_info)
@@ -197,6 +201,7 @@ add_plugin {
 add_plugin {
     "akinsho/toggleterm.nvim",
     name = "toggleterm",
+    disabled = true,
     version = "v2.*"
 }
 
@@ -226,6 +231,20 @@ add_plugin {
         cmp_nvim_path_extension,
         
         lspkind_plugin,
+    },
+}
+
+add_plugin {
+    "ThePrimeagen/harpoon",
+    name = "harpoon",
+    branch = "harpoon2",
+}
+
+add_plugin {
+    "stevearc/oil.nvim",
+    name = "oil",
+    dependencies = {
+        nvim_web_devicons_plugin,
     },
 }
 
