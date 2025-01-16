@@ -6,6 +6,7 @@ local BASE_PLUGINS_PATH = "udv.plugins"
 
 local CONFIG_DIR = vim.fn.stdpath("config")
 local THEMES_CONFIG_DIR = CONFIG_DIR .. "/themes"
+local LOCAL_PLUGINS_DIR = CONFIG_DIR .. "/plugins"
 
 local plugins = {};
 
@@ -39,6 +40,24 @@ local function add_plugin(plugin_info)
     return plugin_info
 end
 
+local function add_local_plugin(plugin_info)
+    local plugin_dir = LOCAL_PLUGINS_DIR .. "/" .. plugin_info.name
+
+    if vim.fn.isdirectory(plugin_dir) == 0 then
+        error("Local plugin directory not found: " .. plugin_dir)
+        return
+    end
+
+    local plugin_generated = {
+        plugin_info.name,
+        dir = plugin_dir,
+    }
+
+    local plugin = vim.tbl_extend('error', plugin_info, plugin_generated)
+
+    return add_plugin(plugin)
+end
+
 ---- Base plugins
 add_plugin {
     "nvim-lua/plenary.nvim",
@@ -63,6 +82,11 @@ local vim_devicons_plugin = {
 
 local nui_plugin = {
     "MunifTanjim/nui.nvim",
+}
+
+---- Local plugins
+add_local_plugin {
+    name = "pcfg"
 }
 
 ---- Used plugins

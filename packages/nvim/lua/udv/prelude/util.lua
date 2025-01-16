@@ -1,3 +1,12 @@
+function get_module_paths(name)
+    local paths = {}
+    for path in package.path:gmatch("[^;]+") do
+        path = path:gsub("?", name:gsub("%.", "/"))
+        table.insert(paths, path)
+    end
+    return paths
+end
+
 function is_module_available(name)
     if package.loaded[name] then
         return true
@@ -13,26 +22,43 @@ function is_module_available(name)
     return false
 end
 
-function safe_require(name)
+function format_load_error(name, err)
+    local lines = {
+        "\nModule load error: " .. name,
+        "Error: " .. tostring(err),
+        "\nSearch paths:"
+    }
+    
+    for path in package.path:gmatch("[^;]+") do
+        table.insert(lines, "  " .. path:gsub("?", name:gsub("%.", "/")))
+    end
+    
+    table.insert(lines, "\nStack trace:")
+    table.insert(lines, debug.traceback("", 2))
+    
+    return table.concat(lines, "\n")
+end
 
+
+function safe_require(name)
+    -- Check main module
     if is_module_available(name) then
-        local ok, module = pcall(require, name)
+        local ok, result = pcall(require, name)
         if ok then
-            return module
+            return result
         else
-            error("Error while loading " .. name)
-            return nil 
+            error(format_load_error(name, result))
         end
     end
 
+    -- Try with .init
     local init_name = name .. ".init"
     if is_module_available(init_name) then
-        local ok, module = pcall(require, init_name)
+        local ok, result = pcall(require, init_name)
         if ok then
-            return module
+            return result
         else
-            error("Error while loading " .. init_name)
-            return nil 
+            error(format_load_error(init_name, result))
         end
     end
 
