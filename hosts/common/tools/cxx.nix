@@ -1,4 +1,4 @@
-{ config, lib, packages,  ... }:
+{ config, lib, pkgs, ... }:
 
 {
     imports = [
@@ -6,7 +6,7 @@
         ./cxx/gnu.nix
     ];
 
-    environment.systemPackages = with packages.stable; [
+    environment.systemPackages = with pkgs.stable; [
         cmake
         valgrind
     ];

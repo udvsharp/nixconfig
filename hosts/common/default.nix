@@ -1,19 +1,27 @@
-{ packages, ... }:
+{ config, lib, pkgs, outputs, spec, home-manager, ... }:
 
+# Learned a lot from exploring https://github.com/EmergentMind/nix-config
 {
-    # TODO: move this to default.nix
+    networking.hostName = spec.hostname;
+
+    nixpkgs = {
+        overlays = [
+            outputs.overlays.default
+        ];
+        config = {
+            allowUnfree = true;
+            allowBroken = false;
+        };
+    };
+    
     imports = [
-        ./nix.nix
+        home-manager
+
+        ./nix
+        ./system
+        ./desktop
+
+        ./users.nix
         ./packages.nix
-
-        ./tools/nix.nix
-        ./tools/cxx.nix
-        ./tools/rust.nix
-        ./tools/python.nix
-    ];
-
-    # TODO: move
-    environment.systemPackages = with packages.stable; [
-        lua-language-server
     ];
 }

@@ -1,7 +1,7 @@
-{ config, lib, packages, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-    environment.systemPackages = with packages.stable; [
+    environment.systemPackages = with pkgs.stable; [
         python39
         pipenv
     ];

@@ -28,7 +28,7 @@ git commit --allow-empty --message "WIP"
 
 # Do the rebuild
 echo "Rebuilding NixOS configuration..."
-sudo nixos-rebuild "$REBUILD_MODE" --flake . --show-trace &>nixos-switch.log ||
+sudo nixos-rebuild "$REBUILD_MODE" --flake . --show-trace &> nixos-switch.log ||
     (cat nixos-switch.log | grep --color error && false)
 
 if [ $? -ne 0 ]; then

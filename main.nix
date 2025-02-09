@@ -1,25 +1,22 @@
-# Main file, defines outputs of whole repository
 {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     nix-darwin,
     ...
 }@inputs: let
-    udv = import ./lib {
-        package-sets = {
-            stable = nixpkgs;
-            unstable = nixpkgs-unstable;
-        };
+    root = ./.;
 
-        inherit nix-darwin;
-        inherit inputs;
+    udv = import ./lib/hosts {
+        inherit root;
+        inherit (self) inputs outputs;
     };
 in {
+    overlays = import ./overlays { inherit inputs; };
+
     nixosConfigurations = {
-        udv-home = udv.mkHost "udv-home" {
+        udv-home = udv.mkNixosHost "udv-home" {
             system = "x86_64-linux";
-            configuration = ./hosts/udv-home/configuration.nix;
+            configuration = ./hosts/nixos/udv-home/configuration.nix;
         };
     };
 
@@ -27,7 +24,7 @@ in {
     darwinConfigurations = {
         udv-mac = udv.mkDarwinHost "udv-mac" {
             system = "aarch64-darwin";
-            configuration = ./hosts/udv-mac/configuration.nix;
+            configuration = ./hosts/darwin/udv-mac/configuration.nix;
         };
     };
 }

@@ -1,11 +1,9 @@
-{ package-sets, inputs, nix-darwin }:
+{ lib, root, inputs, outputs }:
 
-{
-    mkHost = import ./mkhost.nix {
-        inherit package-sets inputs;
-    };
+let
+    commonArgs = { inherit lib root inputs outputs; };
+in {
+    users = import ./users commonArgs;
 
-    mkDarwinHost = import ./mkdarwinhost.nix {
-        inherit package-sets inputs nix-darwin;
-    };
+    deepMerge = import ./deepmerge.nix commonArgs;
 }

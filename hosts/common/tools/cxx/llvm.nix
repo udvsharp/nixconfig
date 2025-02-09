@@ -1,9 +1,8 @@
-{ config, lib, packages, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     # TODO: build from source
-    environment.systemPackages = with packages.unstable; [
-        # LLVM
+    environment.systemPackages = with pkgs.unstable; [
         llvmPackages_19.stdenv
         llvmPackages_19.clang
         llvmPackages_19.clang-tools
