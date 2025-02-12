@@ -1,7 +1,7 @@
-{ root, inputs, outputs }:
+{ lib, root, inputs, outputs }:
 
 let
-    commonArgs = { inherit root inputs outputs; };
+    commonArgs = { inherit lib root inputs outputs; };
 in rec {
     mkHost       = import ./mkhost.nix       commonArgs;
     mkNixosHost  = import ./mknixoshost.nix  commonArgs mkHost;

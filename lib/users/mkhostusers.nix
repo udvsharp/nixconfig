@@ -15,7 +15,7 @@ let
 
     userConfigs = (builtins.map mapFn hostUsers);
 
-    mergedConfig = lib.udv.deepMerge userConfigs;
+    mergedConfig = lib.udv.sets.deepMerge userConfigs;
 in {
     users              = mergedConfig.userConfig;
     homeConfigurations = mergedConfig.userHome;

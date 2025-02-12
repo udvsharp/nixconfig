@@ -6,25 +6,23 @@
 }@inputs: let
     root = ./.;
 
-    udv = import ./lib/hosts {
+    overlays = import ./overlays {
         inherit root;
         inherit (self) inputs outputs;
     };
+
+    lib = inputs.nixpkgs.lib.extend overlays.udv.nixpkgs-lib;
+
+    moduleArgs = {
+        inherit lib root;
+        inherit (self) inputs outputs;
+    };
+
+    hosts = import ./hosts moduleArgs;
 in {
-    overlays = import ./overlays { inherit inputs; };
+    inherit overlays;
 
-    nixosConfigurations = {
-        udv-home = udv.mkNixosHost "udv-home" {
-            system = "x86_64-linux";
-            configuration = ./hosts/nixos/udv-home/configuration.nix;
-        };
-    };
-
-    # TODO: what to do with darwinPackages
-    darwinConfigurations = {
-        udv-mac = udv.mkDarwinHost "udv-mac" {
-            system = "aarch64-darwin";
-            configuration = ./hosts/darwin/udv-mac/configuration.nix;
-        };
-    };
+    inherit (hosts)
+        nixosConfigurations
+        darwinConfigurations;
 }

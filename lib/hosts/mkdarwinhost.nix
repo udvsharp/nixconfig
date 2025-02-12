@@ -1,4 +1,4 @@
-{ root, inputs, outputs }:
+{ lib, root, inputs, outputs }:
 
 mkHost:
 name:

@@ -1,4 +1,4 @@
-{ root, inputs, outputs }:
+{ lib, root, inputs, outputs }:
 
 { 
     mkSystem,
@@ -12,8 +12,6 @@ name:
 }:
 
 let
-    inherit (inputs) nixpkgs;
-
     hostSpec = {
         hostname = name;
     };
@@ -29,20 +27,13 @@ in mkSystem {
     ];
 
     specialArgs = let 
-        extLibModule = "${root}/lib";
-        dotsrc       = "${root}/dotfiles";
+        dotsrc = "${root}/dotfiles";
     in {
         spec = hostSpec;
 
         inherit home-manager;
 
-        lib = let
-            extendedLib = import extLibModule {
-                inherit (nixpkgs) lib;
-                inherit root inputs outputs;
-            };
-        in nixpkgs.lib.extend
-            (final: prev: { udv = extendedLib; });
+        inherit lib;
 
         inherit inputs outputs;
         inherit root dotsrc;

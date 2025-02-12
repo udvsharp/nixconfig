@@ -1,10 +1,18 @@
-{ inputs }:
+{ root, inputs, outputs }:
 
 let
-    packages = import ./packages.nix { inherit inputs; };
+    commonArgs = { inherit root inputs outputs; };
+
+    packages = import ./packages.nix commonArgs;
+    lib      = import ./lib.nix      commonArgs;
 in {
     default = (final: prev: 
-           (packages.stableOverlay   final prev)
-        // (packages.unstableOverlay final prev)
+        (packages final prev)
     );
+
+    udv = {
+        nixpkgs-lib = (final: prev:
+            (lib final prev)
+        );
+    };
 }

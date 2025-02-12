@@ -4,10 +4,12 @@
 userHome: 
 
 let
+    inherit (lib.udv) sets;
+
     patch = {
         home.stateVersion = config.udv.home.stateVersion;
     };
-in lib.udv.deepMerge [
+in sets.deepMerge [
     userHome
     patch
 ]

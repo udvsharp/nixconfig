@@ -4,6 +4,6 @@ let
     commonArgs = { inherit lib root inputs outputs; };
 in {
     users = import ./users commonArgs;
-
-    deepMerge = import ./deepmerge.nix commonArgs;
+    hosts = import ./hosts commonArgs;
+    sets  = import ./sets  commonArgs;
 }

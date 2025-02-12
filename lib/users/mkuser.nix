@@ -15,7 +15,7 @@ let
     # Only config.users.* properties are allowed
     userConfig = import "${homeRoot}/${username}/config.nix" moduleArgs;
 
-    fullHome = lib.udv.deepMerge [
+    fullHome = lib.udv.sets.deepMerge [
         commonHome
         userHome
     ];

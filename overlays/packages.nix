@@ -1,4 +1,4 @@
-{ inputs }:
+{ root, inputs, outputs }:
 
 let
     pkgsCommonOverlay = { package-set-name, input }: (final: prev: {
@@ -10,7 +10,7 @@ let
             };
         };
     });
-in {
+
     stableOverlay = pkgsCommonOverlay {
         package-set-name = "stable";
         input = inputs.nixpkgs-stable;
@@ -20,4 +20,6 @@ in {
         package-set-name = "unstable";
         input = inputs.nixpkgs-unstable;
     };
-}
+in final: prev:
+    (stableOverlay   final prev)
+ // (unstableOverlay final prev)
