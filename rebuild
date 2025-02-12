@@ -4,55 +4,67 @@
 REBUILD_MODE="${1:-switch}"
 CONFIG_DIR="${CONFIG_DIR:-$HOME/nixconfig}"
 EDIT_FLAG=false
+COMMIT_FLAG=false
 
-# Parse arguments for the --edit flag
 for arg in "$@"; do
     if [ "$arg" = "--edit" ]; then
         EDIT_FLAG=true
-        break
+        continue
+    fi
+
+    if [ "$arg" = "--commit" ]; then
+        COMMIT_FLAG=true
+        continue
     fi
 done
 
+git_wip () {
+    git add --all
+    git commit --allow-empty --message "WIP"
+}
+
+git_wip_revert () {
+    git reset --soft HEAD~1
+}
+
+git_commit_generation () {
+    gen=$(
+        nixos-rebuild list-generations |
+        grep current |
+        awk -f util/parse-generations.awk
+    )
+
+    message="Generation $gen"
+
+    git commit --amend --message "$message"
+    if [ "$EDIT_FLAG" = true ]; then
+        git commit --amend --edit
+    fi
+}
+
 pushd "$CONFIG_DIR"
 
-# TODO: autoformat, lint
-
-# Output changes for double-check
+# Print changes to doublecheck
 git diff -U0
 
-### Rebuild with new config
+git_wip
 
-# Do a WIP commit so git tree is clean for a rebuild
-git add --all
-git commit --allow-empty --message "WIP"
-
-# Do the rebuild
 echo "Rebuilding NixOS configuration..."
 sudo nixos-rebuild "$REBUILD_MODE" --flake . --show-trace &> nixos-switch.log ||
     (cat nixos-switch.log | grep --color error && false)
 
 if [ $? -ne 0 ]; then
-    echo "Rebuild failed. Rolling back WIP commit..."
-    git reset --soft HEAD~1
+    echo "Rebuild failed"
+    git_wip_revert
     exit 1
 fi
 
-### Correct the commit
-# Generation
-gen=$(
-    nixos-rebuild list-generations |
-    grep current |
-    awk -f util/parse-generations.awk
-)
-
-message="Generation $gen"
-
-git commit --amend --message "$message"
-if [ "$EDIT_FLAG" = true ]; then
-    git commit --amend --edit
+if [ "$COMMIT_FLAG" = false ]; then
+    git_wip_revert
+else
+    git_commit_generation
 fi
 
-# Status
-git status-short
+git status --short --branch --renames --ahead-behind
 
 popd # ~/nixconfig/
