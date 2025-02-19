@@ -18,6 +18,7 @@
 
         unstable.fzf
         unstable.fd
+        unstable.grc
         unstable.ripgrep
 
         unstable.git

@@ -20,6 +20,7 @@
         ./nix
         ./system
         ./desktop
+        ./tools
 
         ./users.nix
         ./packages.nix
