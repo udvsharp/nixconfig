@@ -2,15 +2,16 @@ require("udv.prelude.util")
 
 local LOAD_FIRST_PRIORITY = 1000
 local LOAD_EARLY_PRIORITY = 100
-local BASE_PLUGINS_PATH = "udv.plugins"
 
 local CONFIG_DIR = vim.fn.stdpath("config")
 local THEMES_CONFIG_DIR = CONFIG_DIR .. "/themes"
 local LOCAL_PLUGINS_DIR = CONFIG_DIR .. "/plugins"
 
+local BASE_PLUGINS_PATH = "udv.plugins"
+
 local plugins = {};
 
-local function plugin_config_module(module_type, plugin_info)
+local function plugin_config_module_name(module_type, plugin_info)
     return BASE_PLUGINS_PATH .. '.' .. module_type .. '.' .. plugin_info.name
 end
 
@@ -19,9 +20,9 @@ local function add_plugin(plugin_info)
         return None
     end
 
-    local plugin_opts_module = plugin_config_module("opts", plugin_info)
-    local plugin_init_module = plugin_config_module("init", plugin_info)
-    local plugin_config_module = plugin_config_module("config", plugin_info)
+    local plugin_opts_module = plugin_config_module_name("opts", plugin_info)
+    local plugin_init_module = plugin_config_module_name("init", plugin_info)
+    local plugin_config_module = plugin_config_module_name("config", plugin_info)
 
     local plugin_generated = {
         opts = safe_require(plugin_opts_module), -- FIXME: this doesn't work for some reason
@@ -89,7 +90,7 @@ add_local_plugin {
     name = "pcfg"
 }
 
----- Used plugins
+---- Themes
 local function themes_from_directory(directory)
     local themes = {}
 
@@ -127,6 +128,7 @@ add_plugin {
     priority = LOAD_FIRST_PRIORITY,
 }
 
+---- Core plugins
 add_plugin {
     "folke/which-key.nvim",
     name = "whichkey",
@@ -137,29 +139,29 @@ add_plugin {
     },
 }
 
--- On NixOS nvim comes with treesitters bundled
--- if not is_nixos() then
-    local treesitter_extension_textobjects = {"nvim-treesitter/nvim-treesitter-textobjects"}
+add_plugin {
+    "ThePrimeagen/harpoon",
+    name = "harpoon",
+    branch = "harpoon2",
+}
 
-    add_plugin {
-        "nvim-treesitter/nvim-treesitter",
-        name = "treesitter",
-        version = false, -- It was said that last release is way too old and doesn't work on windows
-        build = ":TSUpdate",
-        dependencies = {
-            treesitter_extension_textobjects,
-        }
+local treesitter_extension_textobjects = {"nvim-treesitter/nvim-treesitter-textobjects"}
+add_plugin {
+    "nvim-treesitter/nvim-treesitter",
+    name = "treesitter",
+    version = false, -- It was said that last release is way too old and doesn't work on windows
+    build = ":TSUpdate",
+    dependencies = {
+        treesitter_extension_textobjects,
     }
--- end
+}
 
 add_plugin {
-    "nvim-lualine/lualine.nvim",
-    name = "lualine",
+    "stevearc/oil.nvim",
+    name = "oil",
     dependencies = {
         nvim_web_devicons_plugin,
-        vim_devicons_plugin,
     },
-    event = "VeryLazy",
 }
 
 local telescope_extension_ui_select = {"nvim-telescope/telescope-ui-select.nvim"}
@@ -177,6 +179,16 @@ add_plugin {
         telescope_extension_ui_select,
         telescope_extension_fzf_native,
     },
+}
+
+add_plugin {
+    "nvim-lualine/lualine.nvim",
+    name = "lualine",
+    dependencies = {
+        nvim_web_devicons_plugin,
+        vim_devicons_plugin,
+    },
+    event = "VeryLazy",
 }
 
 local lazydev_plugin = {
@@ -253,23 +265,16 @@ add_plugin {
         cmp_nvim_lsp_extension,
         cmp_nvim_buffer_extension,
         cmp_nvim_path_extension,
-        
+
         lspkind_plugin,
     },
 }
 
 add_plugin {
-    "ThePrimeagen/harpoon",
-    name = "harpoon",
-    branch = "harpoon2",
-}
-
-add_plugin {
-    "stevearc/oil.nvim",
-    name = "oil",
-    dependencies = {
-        nvim_web_devicons_plugin,
-    },
+    "L3MON4D3/LuaSnip",
+    name = "luasnip",
+    tag = "v2.3.0",
+    run = "make install jsregexp"
 }
 
 return plugins

@@ -5,7 +5,7 @@
         enable = true;
         
         viAlias = true;
-        vimAlias = true;
+        vimAlias = false;
         vimdiffAlias = true;
 
         defaultEditor = true;
