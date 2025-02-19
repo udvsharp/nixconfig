@@ -3,7 +3,7 @@
 {
     options.udv.desktop = lib.mkOption {
         type = lib.types.str;
-        default = "gnome";
+        default = "hyprland";
         example = "hyprland";
         description = ''
             Selection of desktop environment to use.
@@ -13,7 +13,7 @@
 
     # TODO: setup displays?
     imports = [
-        ./gnome.nix
-        ./hyprland.nix
+        ./gnome
+        ./hyprland
     ];
 }
