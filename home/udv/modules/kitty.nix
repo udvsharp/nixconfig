@@ -6,7 +6,8 @@
         package = pkgs.unstable.kitty;
     };
 
-    # home.file.".config/kitty" = {
-    #     source = lib.filesystem.mkOutOfStoreSymlink "${dotsrc}/kitty";
-    # };
+    xdg.configFile."kitty".source = builtins.path {
+        path = "${dotsrc}/kitty";
+        name = "udv-kitty-config";
+    };
 }

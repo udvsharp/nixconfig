@@ -29,10 +29,6 @@ in {
             The home state version that should be applied for all users on the given machine
         '';
     };
-
-    config.home-manager = {
-
-    };
  
     config.users              = lib.mkIf protectiveCondition userConfigurations.users;
     config.home-manager.users = lib.mkIf protectiveCondition userConfigurations.homeConfigurations;
