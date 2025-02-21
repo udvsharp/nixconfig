@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-    # rtkit is optional but recommended
     security.rtkit.enable = true;
 
     services.pipewire = {
@@ -15,7 +14,4 @@
 
     # PulseAudio should be disabled if Pipewire is enabled
     hardware.pulseaudio.enable = false;
-
-    # TODO: more detailed setup
-    # Sadly, no drivers for my Audient id14
 }

@@ -12,8 +12,6 @@ in
         # This uses proprietary drivers
         open = false;
 
-        # Custom NVIDIA driver version
-        # TODO: version 560.35.03 doesn't build
         package = config.boot.kernelPackages.nvidiaPackages.beta;
 
         modesetting.enable = true;

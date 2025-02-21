@@ -31,7 +31,6 @@ require("udv.plugins.config.lspconfig.lua_ls")
 require("udv.plugins.config.lspconfig.rust_analyzer")
 require("udv.plugins.config.lspconfig.cmake")
 require("udv.plugins.config.lspconfig.nil_ls")
--- TODO: add more!
 
 -- Events
 vim.api.nvim_create_autocmd("LspAttach", {

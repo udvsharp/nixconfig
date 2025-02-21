@@ -2,7 +2,6 @@ local lush = require("lush")
 local hsl = lush.hsl
 
 -- TODO: standardize color names, more descriptive names
--- TODO: don't use non-hsl ones
 
 local base_colors = {
     charcoal    = hsl(220, 9, 13),

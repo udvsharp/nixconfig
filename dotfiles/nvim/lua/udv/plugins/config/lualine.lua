@@ -1,6 +1,5 @@
 -- Inspired by https://github.com/nvim-lualine/lualine.nvim/blob/master/examples/evil_lualine.lua
 -- Idea of left/right components is intuitive
--- TODO: maybe mode in its own section?
 
 local lualine = require("lualine")
 

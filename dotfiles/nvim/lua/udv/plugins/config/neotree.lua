@@ -83,7 +83,6 @@ neotree.setup {
             hide_gitignored = false,
             hide_hidden = false,
             
-            -- TODO: figure the comfortable way to filter
             hide_by_name = {},
             hide_by_pattern = {},
             always_show = {},
