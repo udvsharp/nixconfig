@@ -18,9 +18,11 @@
         inherit (self) inputs outputs;
     };
 
-    hosts = import ./hosts moduleArgs;
+    hosts     = import ./hosts  moduleArgs;
+    devShells = import ./shells moduleArgs;
 in {
     inherit overlays;
+    inherit devShells;
 
     inherit (hosts)
         nixosConfigurations
