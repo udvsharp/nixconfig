@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
-
+# TODO: fix fish shell environment
 {
     programs.bash = {
         interactiveShellInit = ''
@@ -11,8 +11,8 @@
         '';
     };
 
+    programs.fish.enable = true;
     programs.fish = {
-        enable = true;
         # For some reason doesn't work in 24.11 whithout it
         shellInit = ''
             starship init fish | source

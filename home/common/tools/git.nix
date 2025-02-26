@@ -1,9 +1,8 @@
 { lib, pkgs, ... }:
 # TODO: ssh, gpg, github gitlab
 {
+    programs.git.enable = true;
     programs.git = {
-        enable = true;
-
         userName = "Dmitry Vasyliev";
         userEmail = "dmitry.vasyliev@protonmail.com";
 
@@ -54,6 +53,7 @@
         };
 
         extraConfig = {
+            include.path = "";
             core = {
                 # editor = "code --wait";
                 editor = "nvim";
