@@ -241,14 +241,14 @@ add_plugin {
     version = "v2.*"
 }
 
-add_plugin {
-    "nvimdev/dashboard-nvim",
-    name = "dashboard",
-    event = "VimEnter",
-    dependencies = {
-        nvim_web_devicons_plugin,
-    },
-}
+-- add_plugin {
+--     "nvimdev/dashboard-nvim",
+--     name = "dashboard",
+--     event = "VimEnter",
+--     dependencies = {
+--         nvim_web_devicons_plugin,
+--     },
+-- }
 
 local cmp_nvim_lsp_extension = { "hrsh7th/cmp-nvim-lsp" }
 local cmp_nvim_buffer_extension = { "hrsh7th/cmp-buffer" }
