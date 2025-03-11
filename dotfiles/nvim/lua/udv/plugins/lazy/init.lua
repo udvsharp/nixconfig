@@ -86,9 +86,9 @@ local nui_plugin = {
 }
 
 ---- Local plugins
-add_local_plugin {
-    name = "pcfg"
-}
+-- add_local_plugin {
+--     name = "pcfg"
+-- }
 
 ---- Themes
 local function themes_from_directory(directory)
@@ -146,7 +146,7 @@ add_plugin {
 }
 
 local treesitter_extension_textobjects = {"nvim-treesitter/nvim-treesitter-textobjects"}
-add_plugin {
+local treesitter = add_plugin {
     "nvim-treesitter/nvim-treesitter",
     name = "treesitter",
     version = false, -- It was said that last release is way too old and doesn't work on windows
@@ -275,6 +275,15 @@ add_plugin {
     name = "luasnip",
     tag = "v2.3.0",
     run = "make install jsregexp"
+}
+
+add_plugin {
+    "MeanderingProgrammer/render-markdown.nvim",
+    name = "render-markdown",
+    dependencies = {
+        mini_plugin,
+        treesitter,
+    },
 }
 
 return plugins
