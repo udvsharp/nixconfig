@@ -93,6 +93,15 @@ nnoremap N Nzzzv
 
 " Clipboard
 xnoremap <leader>p "_dP
+
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" System clipboard on <leader>
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
