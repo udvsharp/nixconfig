@@ -12,9 +12,14 @@ function is_module_available(name)
         return true
     end
 
-    for _, searcher in ipairs(package.searchers or package.loaders) do
-        local loader = searcher(name)
-        if type(loader) == 'function' then
+    local searchers = package.searchers or package.loaders
+    if not searchers then
+        return false
+    end
+
+    for _, searcher in ipairs(searchers) do
+        local success, loader = pcall(searcher, name)
+        if success and type(loader) == "function" then
             return true
         end
     end
@@ -28,20 +33,22 @@ function format_load_error(name, err)
         "Error: " .. tostring(err),
         "\nSearch paths:"
     }
-    
+
+    local normalized_name = name:gsub("%.", package.config:sub(1, 1)) -- Get platform-specific separator
+
     for path in package.path:gmatch("[^;]+") do
-        table.insert(lines, "  " .. path:gsub("?", name:gsub("%.", "/")))
+        local formatted_path = path:gsub("?", normalized_name)
+        table.insert(lines, "  " .. formatted_path)
     end
-    
+
     table.insert(lines, "\nStack trace:")
     table.insert(lines, debug.traceback("", 2))
-    
+
     return table.concat(lines, "\n")
 end
 
 
 function safe_require(name)
-    -- Check main module
     if is_module_available(name) then
         local ok, result = pcall(require, name)
         if ok then
@@ -51,7 +58,6 @@ function safe_require(name)
         end
     end
 
-    -- Try with .init
     local init_name = name .. ".init"
     if is_module_available(init_name) then
         local ok, result = pcall(require, init_name)

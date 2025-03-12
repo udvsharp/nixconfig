@@ -10,7 +10,7 @@ The goal is a **portable**, **readable** config that works across package manage
 - [`./themes`](./themes) – Custom color schemes (built with [`lush.nvim`](https://github.com/rktjmp/lush.nvim))  
 - `lua/`
     - `options/` – Core configuration and remaps for plugins
-    - `pkgs/` – Simple package manager abstraction  
+    - `pkgs/` – Simple package manager abstraction
     - `plugins/`
         - Organized by **lifecycle step** (config, init, etc.) – [See this code](https://github.com/udvsharp/nixconfig/blob/main/dotfiles/nvim/lua/udv/plugins/lazy/init.lua#L17)  
         - Separate directories for each package manager  

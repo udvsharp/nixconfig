@@ -65,7 +65,7 @@ nnoremap <Tab> :set relativenumber!<CR>
 nmap ,p "0p
 nmap ,P "0P
 
-" Write if something changed - don't mess with metadata unnecesarrily
+" Write if something changed - don't mess with metadata unnecessarily
 noremap <leader>w :up<CR>
 
 " Moving things around in Visual Mode

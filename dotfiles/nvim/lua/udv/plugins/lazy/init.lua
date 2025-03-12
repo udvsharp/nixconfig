@@ -17,7 +17,7 @@ end
 
 local function add_plugin(plugin_info)
     if plugin_info.disabled then
-        return None
+        return nil
     end
 
     local plugin_opts_module = plugin_config_module_name("opts", plugin_info)
@@ -88,6 +88,10 @@ local nui_plugin = {
 ---- Local plugins
 add_local_plugin {
     name = "pcfg"
+}
+
+add_local_plugin {
+    name = "regx"
 }
 
 ---- Themes
@@ -284,6 +288,11 @@ add_plugin {
         mini_plugin,
         treesitter,
     },
+}
+
+add_plugin {
+    "lewis6991/gitsigns.nvim",
+    name = "gitsigns",
 }
 
 return plugins
