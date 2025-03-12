@@ -86,9 +86,9 @@ local nui_plugin = {
 }
 
 ---- Local plugins
--- add_local_plugin {
---     name = "pcfg"
--- }
+add_local_plugin {
+    name = "pcfg"
+}
 
 ---- Themes
 local function themes_from_directory(directory)

@@ -10,7 +10,7 @@ local logger = log.new({
     use_file = true,
     use_console = false,
     highlights = false,
-    outfile = log_path .. '/pcfg.log'
+    outfile = tostring(log_path / 'pcfg.log')
 })
 
 logger.debug("Logger initialized")
