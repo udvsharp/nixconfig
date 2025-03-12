@@ -5,7 +5,7 @@ regx.__index = regx
 
 ---@class Pattern
 ---@field name string pattern name
----@field match string regex string to match
+---@field match (string|function) regex string to match
 ---@field url string base URL
 regx.patterns = {}
 
@@ -37,10 +37,19 @@ function regx:setup_highlight()
     self:highlight()
 end
 
+function regx:match(pattern, word)
+    if type(pattern.match) == "string" then
+        return word:match(pattern.match)
+    elseif type(pattern.match) == "function" then
+        return pattern.match(word)
+    end
+end
+
 function regx:open_link(word)
     for _, pattern in ipairs(self.patterns) do
-        if word:match(pattern.match) then
-            local full_url = pattern.url .. word
+        local match = self:match(pattern, word)
+        if match then
+            local full_url = pattern.url .. match
             vim.fn.system(get_open_cmd(full_url))
             return
         end
