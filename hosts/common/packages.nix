@@ -39,6 +39,6 @@
         unstable.google-chrome
         unstable.zoom-us
         unstable.spotify
-        unstable.vesktop
+        unstable.discord
     ]);
 }
