@@ -38,6 +38,8 @@ function regx:open_link(word)
             return
         end
     end
+
+    vim.api.nvim_feedkeys("gx", "n", false)
 end
 
 function regx:open_current_word()
