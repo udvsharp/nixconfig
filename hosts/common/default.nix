@@ -4,6 +4,8 @@
 {
     networking.hostName = spec.hostname;
 
+    users.defaultUserShell = pkgs.fish;
+
     nixpkgs = {
         overlays = [
             outputs.overlays.default

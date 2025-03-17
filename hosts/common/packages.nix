@@ -9,6 +9,7 @@
         unstable.starship
         unstable.neofetch
         unstable.htop
+        unstable.xclip
 
         unstable.wget
         unstable.curl
