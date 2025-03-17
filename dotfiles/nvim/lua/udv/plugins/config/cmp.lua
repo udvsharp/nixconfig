@@ -1,4 +1,6 @@
 local lspkind = require("lspkind")
+local luasnip = require("luasnip")
+
 local lspkind_config = {
     mode = "symbol_text",
     preset = "codicons",
@@ -47,7 +49,6 @@ local cmp_config = {
     mapping = {
         ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-        
         ["<C-y>"] = cmp.mapping(
             cmp.mapping.confirm {
                 behavior = cmp.ConfirmBehavior.Insert,
@@ -57,9 +58,14 @@ local cmp_config = {
         ),
 
         ["<C-Space>"] = cmp.mapping.complete(),
+    },
 
-        -- TODO: configure snippets
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
     },
 }
 
 cmp.setup(cmp_config)
+

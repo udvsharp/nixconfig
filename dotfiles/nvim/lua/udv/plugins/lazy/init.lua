@@ -257,8 +257,16 @@ add_plugin {
 local cmp_nvim_lsp_extension = { "hrsh7th/cmp-nvim-lsp" }
 local cmp_nvim_buffer_extension = { "hrsh7th/cmp-buffer" }
 local cmp_nvim_path_extension = { "hrsh7th/cmp-path" }
+local cmp_luasnip_extension = { "saadparwaiz1/cmp_luasnip" }
 
 local lspkind_plugin = { "onsails/lspkind.nvim" }
+
+local luasnip = add_plugin {
+    "L3MON4D3/LuaSnip",
+    name = "luasnip",
+    tag = "v2.3.0",
+    run = "make install jsregexp"
+}
 
 add_plugin {
     "hrsh7th/nvim-cmp",
@@ -269,16 +277,18 @@ add_plugin {
         cmp_nvim_lsp_extension,
         cmp_nvim_buffer_extension,
         cmp_nvim_path_extension,
+        cmp_luasnip_extension,
 
         lspkind_plugin,
+
+        luasnip,
     },
 }
 
 add_plugin {
-    "L3MON4D3/LuaSnip",
-    name = "luasnip",
-    tag = "v2.3.0",
-    run = "make install jsregexp"
+    "jiangmiao/auto-pairs",
+    name = "auto-pairs",
+    tag = "v2.0.0",
 }
 
 add_plugin {

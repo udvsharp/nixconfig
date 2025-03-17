@@ -31,10 +31,10 @@ set scrolloff=16
 
 " Completion
 set completeopt=menu,menuone,noselect
-" set shortmess+=c  " Uncomment and test if needed
+set shortmess+=c
 
 " Visual-Block mode
-set virtualedit=block " TODO: test 'all' and 'insert'
+set virtualedit=block
 
 " Search & Replace
 set hlsearch
