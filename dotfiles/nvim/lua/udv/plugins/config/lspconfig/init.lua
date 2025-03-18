@@ -30,6 +30,7 @@ require("udv.plugins.config.lspconfig.clangd")
 require("udv.plugins.config.lspconfig.lua_ls")
 require("udv.plugins.config.lspconfig.rust_analyzer")
 require("udv.plugins.config.lspconfig.cmake")
+require("udv.plugins.config.lspconfig.pyright")
 require("udv.plugins.config.lspconfig.nil_ls")
 
 -- Events
