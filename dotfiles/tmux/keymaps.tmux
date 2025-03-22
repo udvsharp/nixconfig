@@ -23,5 +23,5 @@ bind -r C-l resize-pane -R 15
 
 # Windows
 bind -r "<" swap-window -d -t -1
-bind -r "<" swap-window -d -t +1
+bind -r ">" swap-window -d -t +1
 

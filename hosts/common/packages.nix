@@ -21,6 +21,7 @@
         unstable.fd
         unstable.grc
         unstable.ripgrep
+        unstable.tree
 
         unstable.git
         unstable.gh

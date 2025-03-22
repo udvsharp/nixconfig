@@ -43,7 +43,7 @@ function regx:open_link(word)
 end
 
 function regx:open_current_word()
-    local word = vim.fn.expand("<cword>")
+    local word = vim.fn.expand("<cWORD>")
     if word and word ~= "" then
         self:open_link(word)
     end
