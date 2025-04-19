@@ -25,6 +25,7 @@
 
         unstable.git
         unstable.gh
+        unstable.gibo
 
         unstable.tmux
     ] ++ [
